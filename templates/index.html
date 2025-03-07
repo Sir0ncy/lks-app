@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKS Management App</title>
+</head>
+<body>
+   {% if 'loggedin' not in session %}
+    <a href="/login">Login</a>
+    <br>
+    <a href="/register">Register</a>
+    <br>
+    Not logged in
+    {% endif %}
+
+    {% if 'loggedin' in session %}
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <a href="/logout">Logout</a>
+    Welcome {{ session['username'] }}
+    {% endif %} 
+</body>
+</html>
