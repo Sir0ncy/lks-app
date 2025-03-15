@@ -3,18 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKS App : Register</title>
+    <title>Register - LKS App</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        body {
+            background: #456;
+            font-family: "Open Sans", sans-serif;
+        }
+        .register {
+            width: 400px;
+            margin: 16px auto;
+            font-size: 16px;
+        }
+        .register-header {
+            background: #28d;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 0px;
+        }
+        .register-container {
+            background: #ebebeb;
+            padding: 12px;
+        }
+        .register p {
+            padding: 12px;
+        }
+        .register input {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            border-width: 1px;
+            border-style: solid;
+            padding: 16px;
+            outline: 0;
+            font-family: inherit;
+            font-size: 0.95em;
+        }
+        .register input[type="text"],
+        .register input[type="email"],
+        .register input[type="password"] {
+            background: #fff;
+            border-color: #bbb;
+            color: #555;
+        }
+        .register input[type="text"]:focus,
+        .register input[type="email"]:focus,
+        .register input[type="password"]:focus {
+            border-color: #888;
+        }
+        .register input[type="submit"] {
+            background: #28d;
+            border-color: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+        .register input[type="submit"]:hover {
+            background: #17c;
+        }
+        .register input[type="submit"]:focus {
+            border-color: #05a;
+        }
+
+        h3 {
+            z-index: 100;
+            color: black;
+            text-align: center;
+            background-color: #ebebeb;
+            margin: 0px;
+        }
+
+        #back-home {
+            padding: 12px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <a href="/">back to home</a>
-    <h3>{{ text }}</h3>
-     <form action="/register" method="post">
-        <input type="text" name="username" id="" placeholder="Username" required>
-        <input type="email" name="email" id="" placeholder="Email" required>
-        <input type="password" name="password" id="" placeholder="Password" required>
-        <input type="submit" value="Register">
-        <p>Already have an account? <a href="/login">Login</a></p>
-    </form>
+    <div class="register">
+        <h1 class="register-header">Register</h1>
+        <form action="/register" method="post" class="register-container">
+            <p>
+                <input type="text" name="username" placeholder="Username" required>
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="Email" required>
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password" required>
+            </p>
+            <p>
+                <input type="submit" value="Register">
+            </p>
+            <h3>{{ text }}</h3>
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <a href="/" id="back-home">Back to Home</a>
+        </form>
+    </div>
 </body>
 </html>

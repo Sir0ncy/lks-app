@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - LKS App</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        body {
+            background: #456;
+            font-family: "Open Sans", sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .logout-btn {
+            background: red;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>You are now logged in.</p>
+        <img src="/static/lks.jpg" alt="Logo LKS Jogja">
+        <br>
+        <script language="javascript" type="text/javascript">
+            window.history.forward();
+        </script>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

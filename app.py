@@ -1,11 +1,13 @@
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 from flaskext.mysql import MySQL
 import pymysql
 
 mysql = MySQL()
 app = Flask(__name__, template_folder='templates')
+# Don't modify the key
 app.secret_key = 'lksdiy@2025'
 
+# Adjust to your database server
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'lksdb'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
@@ -32,14 +34,15 @@ def login():
             session['loggedin'] = True
             session['id'] = user['id']
             session['username'] = user['username']
-            return render_template('index.html', msg=text)
+            # return render_template('index.html', text=text)
+            return redirect(url_for('home_page'))
         else:
             text = 'Username/Password salah'
     
     elif request.method == 'POST':
         text = 'Isi semua kolom!'
 
-    return render_template('login.html', msg=text)
+    return render_template('login.html', text=text)
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -69,7 +72,15 @@ def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
-    return render_template('index.html')
+    # return render_template('index.html')
+    return redirect(url_for('login'))
+
+@app.route('/home')
+def home_page():
+    if 'loggedin' in session:
+        return render_template('home.html', username=session['username'])
+    else:
+        return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)

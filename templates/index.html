@@ -3,23 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKS Management App</title>
+    <title>LKS App</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        body {
+            background: #456;
+            font-family: "Open Sans", sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            background: #28d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background: #17c;
+        }
+        .logout-btn {
+            background: red;
+        }
+        .logout-btn:hover {
+            background: darkred;
+        }
+    </style>
 </head>
 <body>
-   {% if 'loggedin' not in session %}
-    <a href="/login">Login</a>
-    <br>
-    <a href="/register">Register</a>
-    <br>
-    Not logged in
-    {% endif %}
-
-    {% if 'loggedin' in session %}
-    <script language="javascript" type="text/javascript">
-        window.history.forward();
-    </script>
-    <a href="/logout">Logout</a>
-    Welcome {{ session['username'] }}
-    {% endif %} 
+    <div class="container">
+        {% if 'loggedin' not in session %}
+            <h1>Welcome to LKS App</h1>
+            <img src="/static/lks.jpg" alt="Logo LKS Jogja">
+            <p>You are not logged in.</p>
+            <a href="/login" class="btn">Login</a>
+            <a href="/register" class="btn">Register</a>
+        {% else %}
+            <script language="javascript" type="text/javascript">
+                window.history.forward();
+            </script>
+            <h1>Welcome, {{ session['username'] }}!</h1>
+            <p>You are logged in.</p>
+            <a href="/home" class="btn">Go to Dashboard</a>
+            <a href="/logout" class="btn logout-btn">Logout</a>
+        {% endif %} 
+    </div>
 </body>
 </html>
