@@ -4,14 +4,14 @@ import pymysql
 
 mysql = MySQL()
 app = Flask(__name__, template_folder='templates')
-# Don't modify the key
+# Don't modify the key!
 app.secret_key = 'lksdiy@2025'
 
 # Adjust to your database server
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'lksdb'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = '172.19.158.154' # Change localhost to your DB Server IP
 
 mysql.init_app(app)
 
