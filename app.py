@@ -4,14 +4,14 @@ import pymysql
 
 mysql = MySQL()
 app = Flask(__name__, template_folder='templates')
-# Don't modify the key!
+# Don't modify the secret key!
 app.secret_key = 'lksdiy@2025'
 
 # Adjust to your database server
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'lksdb'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_HOST'] = '172.19.158.154' # Change localhost to your DB Server IP
+app.config['MYSQL_DATABASE_HOST'] = 'x.x.x.x' # Change localhost to your DB Server IP
 
 mysql.init_app(app)
 
@@ -34,7 +34,6 @@ def login():
             session['loggedin'] = True
             session['id'] = user['id']
             session['username'] = user['username']
-            # return render_template('index.html', text=text)
             return redirect(url_for('home_page'))
         else:
             text = 'Username/Password salah'
@@ -72,7 +71,6 @@ def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
-    # return render_template('index.html')
     return redirect(url_for('login'))
 
 @app.route('/home')
